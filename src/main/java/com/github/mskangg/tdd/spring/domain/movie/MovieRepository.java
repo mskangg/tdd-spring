@@ -1,8 +1,7 @@
 package com.github.mskangg.tdd.spring.domain.movie;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
 public interface MovieRepository {
-    ResponseMovie findByQuery(String query);
+    List<Movie> findByQuery(String query);
 }
