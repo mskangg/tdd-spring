@@ -53,6 +53,7 @@ class MovieServiceTest {
 
         //given
         float expectedUserRanking = 9.5f;
+        int expectedSize = 5;
         List<MovieDto> movies = new ArrayList<>();
         movies.add(MovieDto.builder().movieTitle("영화1").movieActor("배우1").userRating(9.3f).build());
         movies.add(MovieDto.builder().movieTitle("영화2").movieActor("배우2").userRating(9.2f).build());
@@ -69,6 +70,7 @@ class MovieServiceTest {
 
         //then
         Assertions.assertEquals(expectedUserRanking, sortedMovies.get(0).getUserRating());
+        Assertions.assertEquals(expectedSize, sortedMovies.size());
     }
 
 }
