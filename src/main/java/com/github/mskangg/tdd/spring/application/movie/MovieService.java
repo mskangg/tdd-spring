@@ -24,6 +24,8 @@ public class MovieService {
 
     public List<Movie> findByQueryOrderRating(String query) {
         return findByQueryImpl(query).stream()
+                .filter(b -> b.getUserRating() != null)
+                .filter(b -> !(b.getUserRating()).equals(0.0f))
                 .sorted((a, b) -> b.getUserRating() > a.getUserRating() ? 1 : -1)
                 .collect(Collectors.toList());
     }
