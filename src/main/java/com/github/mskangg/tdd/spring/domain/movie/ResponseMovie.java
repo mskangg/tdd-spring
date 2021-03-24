@@ -9,12 +9,12 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MovieApi {
+public class ResponseMovie {
     private long total;
     private List<MovieDto> items;
 
     @Builder
-    public MovieApi(long total, List<MovieDto> items) {
+    public ResponseMovie(long total, List<MovieDto> items) {
         this.total = total;
         this.items = items;
     }

@@ -1,9 +1,9 @@
 package com.github.mskangg.tdd.spring.application.movie;
 
 import com.github.mskangg.tdd.spring.domain.movie.Movie;
-import com.github.mskangg.tdd.spring.domain.movie.MovieApi;
 import com.github.mskangg.tdd.spring.domain.movie.MovieDto;
 import com.github.mskangg.tdd.spring.domain.movie.MovieRepository;
+import com.github.mskangg.tdd.spring.domain.movie.ResponseMovie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ class MovieServiceTest {
         movies.add(MovieDto.builder().movieTitle("영화4").movieActor("배우4").userRating(9.5f).build());
         movies.add(MovieDto.builder().movieTitle("영화5").movieActor("배우5").userRating(9.4f).build());
         Mockito.when(movieRepository.findByQuery("test"))
-                .thenReturn(MovieApi.builder().items(movies).build());
+                .thenReturn(ResponseMovie.builder().items(movies).build());
 
         //when
         List<Movie> sortedMovies = movieService.findByQueryOrderRating("test");
