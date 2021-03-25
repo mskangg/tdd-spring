@@ -3,7 +3,7 @@ package com.github.mskangg.tdd.spring.infrastructure.movie;
 import com.github.mskangg.tdd.spring.config.NaverProperties;
 import com.github.mskangg.tdd.spring.domain.movie.Movie;
 import com.github.mskangg.tdd.spring.domain.movie.MovieRepository;
-import com.github.mskangg.tdd.spring.domain.movie.ResponseMovie;
+import com.github.mskangg.tdd.spring.infrastructure.movie.dto.ResponseMovie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -37,11 +37,11 @@ public class MovieRepositoryImpl implements MovieRepository {
                 .getBody()
                 .getItems()
                 .stream()
-                .map(movieDto -> Movie.builder()
-                        .title(movieDto.getMovieTitle())
-                        .link(movieDto.getMovieLink())
-                        .actor(movieDto.getMovieActor())
-                        .userRating(movieDto.getUserRating())
+                .map(item -> Movie.builder()
+                        .title(item.getMovieTitle())
+                        .link(item.getMovieLink())
+                        .actor(item.getMovieActor())
+                        .userRating(item.getUserRating())
                         .build())
                 .collect(Collectors.toList());
     }
