@@ -33,4 +33,8 @@ public class MovieService {
     private List<Movie> findByQueryImpl(String query) {
         return movieRepository.findByQuery(query);
     }
+
+    public double calculateAverageUserRating(String query) {
+        return getMovieGroup(query).calculateAverageUserRating().getAsDouble();
+    }
 }

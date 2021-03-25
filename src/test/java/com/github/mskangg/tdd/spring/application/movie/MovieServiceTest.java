@@ -29,7 +29,7 @@ class MovieServiceTest {
                 (Movie.builder().title("<b>영화1</b>").actor("배우1").userRating(9.3f).build()),
                 (Movie.builder().title("<b>영화2</b>").actor("배우2").userRating(9.2f).build()),
                 (Movie.builder().title("<b>영화3</b>").actor("배우3").userRating(9.1f).build()),
-                (Movie.builder().title("<b>영화4</b>").actor("배우4").userRating(9.5f).build()),
+                (Movie.builder().title("<b>영화4</b>").actor("배우4").userRating(9.6f).build()),
                 (Movie.builder().title("<b>영화5</b>").actor("배우5").userRating(9.4f).build()),
                 (Movie.builder().title("<b>영화6</b>").actor("배우6").userRating(0.0f).build()),
                 (Movie.builder().title("<b>영화7</b>").actor("배우7").userRating(null).build())
@@ -41,7 +41,7 @@ class MovieServiceTest {
     void arranged_well_in_user_ratings() {
 
         //given
-        float expectedUserRanking = 9.5f;
+        float expectedUserRanking = 9.6f;
         Mockito.when(movieRepository.findByQuery(Mockito.any())).thenReturn(getStubMovies());
 
         //when
@@ -56,7 +56,7 @@ class MovieServiceTest {
     void user_ratings_exclude_zero_or_null() {
 
         //given
-        float expectedUserRanking = 9.5f;
+        float expectedUserRanking = 9.6f;
         int expectedSize = 5;
         Mockito.when(movieRepository.findByQuery(Mockito.any())).thenReturn(getStubMovies());
 
@@ -84,6 +84,21 @@ class MovieServiceTest {
                 StringUtils.countOccurrencesOf(foundMovies.stream().findFirst().get().getTitle(), "<b>"));
         Assertions.assertEquals(expectedSpecialCharacterCount,
                 StringUtils.countOccurrencesOf(foundMovies.stream().findFirst().get().getTitle(), "</b>"));
+    }
+
+    @Test
+    @DisplayName("상위 평점 2개의 평균 값 구하기")
+    void test_calculateAverageUserRating() {
+
+        //given
+        double expectedAverage = 9.5;
+        Mockito.when(movieRepository.findByQuery(Mockito.any())).thenReturn(getStubMovies());
+
+        //when
+        double actualAverage = movieService.calculateAverageUserRating(Mockito.any());
+
+        //then
+        Assertions.assertEquals(expectedAverage, actualAverage);
     }
 
 }
