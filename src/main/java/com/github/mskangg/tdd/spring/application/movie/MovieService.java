@@ -35,6 +35,6 @@ public class MovieService {
     }
 
     public double calculateAverageUserRating(String query) {
-        return getMovieGroup(query).calculateAverageUserRating().getAsDouble();
+        return getMovieGroup(query).calculateAverageUserRating().orElseThrow();
     }
 }
